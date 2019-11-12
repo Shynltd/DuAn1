@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+<ImageView
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:background="@null"
+    android:id="@+id/imgNhanVien"
+    android:src="@drawable/nhanvien"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_toRightOf="@id/imgNhanVien"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:id="@+id/tvNameNhanVien"
+            android:text="Hiệu óc chó"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/phone"
+                android:id="@+id/imgPhoneNhanVien"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:id="@+id/tvPhoneNhanhVien"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:text="0987654321"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/duoinhanhvien"
+        android:layout_alignParentRight="true"
+        android:id="@+id/imgDuoiNhanvien"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="10dp"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imgSuaNhanVien"
+        android:src="@drawable/suanhanvien"
+        android:layout_toLeftOf="@id/imgDuoiNhanvien"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="10dp"/>
+</RelativeLayout>

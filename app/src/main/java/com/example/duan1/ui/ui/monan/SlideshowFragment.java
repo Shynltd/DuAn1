@@ -1,4 +1,4 @@
-package com.example.duan1.ui.ui.send;
+package com.example.duan1.ui.ui.monan;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,22 +14,16 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.duan1.R;
 
-public class SendFragment extends Fragment {
+public class SlideshowFragment extends Fragment {
 
-    private SendViewModel sendViewModel;
+    private SlideshowViewModel slideshowViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        sendViewModel =
-                ViewModelProviders.of(this).get(SendViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_send, container, false);
+        slideshowViewModel =
+                ViewModelProviders.of(this).get(SlideshowViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
 
-        sendViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-
-            }
-        });
         return root;
     }
 }

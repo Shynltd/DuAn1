@@ -1,4 +1,4 @@
-package com.example.duan1.ui.ui.slideshow;
+package com.example.duan1.ui.ui.monan;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
