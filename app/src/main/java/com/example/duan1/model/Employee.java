@@ -12,11 +12,10 @@ public class Employee {
     @ColumnInfo(name = "hoVaTen")
     public String hoVaTen;
     @ColumnInfo(name = "soDienThoai")
-    public int soDienThoai;
+    public String soDienThoai;
     @ColumnInfo(name = "soCMND")
     public int soCMND;
     @ColumnInfo(name = "diaChi")
     public String diaChi;
 
-   
 }

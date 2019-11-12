@@ -1,12 +1,15 @@
 package com.example.duan1.ui.ui.nhanvien;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.room.Room;
 
@@ -42,7 +45,7 @@ public class NhanVienAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         NhanVienHolder nhanVienHolder=null;
         if (convertView==null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.lv_nhanvien, parent, false);
@@ -58,13 +61,28 @@ public class NhanVienAdapter extends BaseAdapter {
             nhanVienHolder= (NhanVienHolder) convertView.getTag();
         }
         appDatabase= Room.databaseBuilder(context,AppDatabase.class,"duan1.db").allowMainThreadQueries().build();
-        Employee employee=employeeList.get(position);
-        nhanVienHolder.tvPhoneNhanVien.setText(employeeList.get(position).soDienThoai);
+        final Employee employee=employeeList.get(position);
+        nhanVienHolder.tvPhoneNhanVien.setText(employeeList.get(position).soDienThoai+"");
         nhanVienHolder.tvNameNhanVien.setText(employeeList.get(position).hoVaTen);
         nhanVienHolder.imgDuoiNhanVien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(context);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(context, "Bạn đã đuổi việc "+employeeList.get(position).hoVaTen, Toast.LENGTH_SHORT).show();
+                        employeeList.remove(employee);
+                        appDatabase.employeeDAO().delete(employee);
+                        notifyDataSetChanged();
+                    }
+                }).setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
+                    }
+                }).setMessage("Bạn có muốn đuổi việc "+employeeList.get(position).hoVaTen+" không ?");
+                builder.create().show();
             }
         });
         nhanVienHolder.imgSuaNhanVien.setOnClickListener(new View.OnClickListener() {
