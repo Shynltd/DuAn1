@@ -98,4 +98,11 @@ public class NhanVienAdapter extends BaseAdapter {
          ImageView imgNhanVien,imgPhoneNhanVien,imgDuoiNhanVien,imgSuaNhanVien;
          TextView tvNameNhanVien,tvPhoneNhanVien;
     }
+
+    @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
+    }
+
+
 }

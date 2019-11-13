@@ -67,10 +67,10 @@ FloatingActionButton fabAddNhanVien;
                         employee.diaChi=tietDiaChi.getText().toString();
                         employee.soCMND= Integer.parseInt(tiedSoCMND.getText().toString());
                         long[] result= db.employeeDAO().insert(employee);
-                        nhanVienAdapter.notifyDataSetChanged();
+
                         if (result != null) {
                             Toast.makeText(getContext(), "Chúc mừng bạn vừa tuyển nhân viên mới", Toast.LENGTH_SHORT).show();
-
+                            nhanVienAdapter.notifyDataSetChanged();
                             alertDialog.dismiss();
                         } else {
                             Toast.makeText(getContext(), "Không thể tuyển người này", Toast.LENGTH_SHORT).show();
@@ -83,8 +83,12 @@ FloatingActionButton fabAddNhanVien;
         });
 
 
+
         return root;
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 }

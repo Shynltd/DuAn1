@@ -12,18 +12,21 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.duan1.R;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginActivity extends AppCompatActivity {
 SharedPreferences sharedPreferences;
 EditText edUserName,edUserPassWord;
 CheckBox chkRemember;
 Button btnSignIn;
+TextInputLayout tietPass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         setTitle("Đăng nhập");
         init();
+       tietPass.setHintEnabled(false);
         sharedPreferences=getSharedPreferences("dataLogin",MODE_PRIVATE);
         edUserName.setText(sharedPreferences.getString("taiKhoan",""));
         edUserPassWord.setText(sharedPreferences.getString("matKhau",""));
@@ -62,6 +65,7 @@ Button btnSignIn;
     }
 
     private void init() {
+        tietPass=findViewById(R.id.tietPassword);
         btnSignIn=findViewById(R.id.btnSignIn);
         edUserName=findViewById(R.id.edUserName);
         edUserPassWord=findViewById(R.id.edPassWord);

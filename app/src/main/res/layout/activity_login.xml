@@ -9,45 +9,63 @@
     android:orientation="vertical"
     tools:context=".ui.LoginActivity">
 <ImageView
-    android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginTop="30dp"
     android:src="@drawable/logo" />
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tài khoản"/>
     <EditText
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/edUserName"
-        />
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Mật khẩu"/>
-    <EditText
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:id="@+id/edPassWord"/>
-    <CheckBox
-
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/edt_username_login"
+        android:ems="10"
+        android:hint="Tên đăng nhập"
+        android:layout_gravity="center"
+        android:inputType="textPersonName"
+        android:paddingLeft="65dp"
+        android:paddingRight="10dp"
+ />
+<com.google.android.material.textfield.TextInputLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/tietPassword"
+    android:layout_marginTop="20dp"
+    android:layout_gravity="center"
+    app:passwordToggleEnabled="true"
+    >
+    <EditText
+        android:id="@+id/edPassWord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edt_password_login"
+        android:ems="10"
+        android:hint="Mật khẩu"
+        android:inputType="textPassword"
+        android:paddingLeft="65dp"
+        android:paddingRight="10dp"
+        />
+</com.google.android.material.textfield.TextInputLayout>
+    <CheckBox
+
         android:id="@+id/chkRemember"
-        android:text="Remember me ?"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="10dp"
+        android:text="Remember me ?" />
+
     <Button
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:background="@drawable/btn_login"
         android:id="@+id/btnSignIn"
+        android:textAllCaps="false"
+        android:textSize="25dp"
+        android:textColor="#FCF54C"
         android:text="Đăng nhập"/>
 
 
