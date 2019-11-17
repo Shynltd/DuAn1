@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import androidx.room.Room;
 import com.example.duan1.R;
 import com.example.duan1.database.AppDatabase;
 import com.example.duan1.model.Employee;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
 
@@ -88,7 +90,38 @@ public class NhanVienAdapter extends BaseAdapter {
         nhanVienHolder.imgSuaNhanVien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final AlertDialog alertDialog=new AlertDialog.Builder(context).create();
+                final View alert =LayoutInflater.from(context).inflate(R.layout.update_nhanvien,null);
+                alertDialog.setView(alert);
+                final TextInputEditText tietID,tietName,tietDiaChi,tietSoDienThoai,tiedSoCMND;
+                Button btnSuaNhanVien;
+                tietID=alert.findViewById(R.id.tietID);
+                tiedSoCMND=alert.findViewById(R.id.tietSoCMND);
+                tietDiaChi=alert.findViewById(R.id.tietDiaChi);
+                tietName=alert.findViewById(R.id.tietName);
+                tietSoDienThoai=alert.findViewById(R.id.tietsoDienThoai);
+                btnSuaNhanVien=alert.findViewById(R.id.btnSuaNhanVien);
+                tietID.setText(employeeList.get(position).id);
+                tietID.setEnabled(false);
+                tiedSoCMND.setText(employeeList.get(position).soCMND+"");
+                tiedSoCMND.setEnabled(false);
+                tietDiaChi.setText(employeeList.get(position).diaChi);
+                tietName.setText(employeeList.get(position).hoVaTen);
+                tietSoDienThoai.setText(employeeList.get(position).soDienThoai);
+                btnSuaNhanVien.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        employee.hoVaTen=tietName.getText().toString();
+                        employee.soDienThoai=tietSoDienThoai.getText().toString();
+                        employee.diaChi=tietDiaChi.getText().toString();
+                        appDatabase.employeeDAO().update(employee);
+                        Toast.makeText(context, "Bạn đã sửa thông tin nhân viên thành công", Toast.LENGTH_SHORT).show();
+                        alertDialog.dismiss();
+                        notifyDataSetChanged();
 
+                    }
+                });
+                alertDialog.show();
             }
         });
         return convertView;

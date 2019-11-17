@@ -60,21 +60,27 @@ FloatingActionButton fabAddNhanVien;
                 btnTuyenNhanVien.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Employee employee=new Employee();
-                        employee.hoVaTen=tietName.getText().toString();
-                        employee.id=tietID.getText().toString();
-                        employee.soDienThoai= tietSoDienThoai.getText().toString();
-                        employee.diaChi=tietDiaChi.getText().toString();
-                        employee.soCMND= Integer.parseInt(tiedSoCMND.getText().toString());
-                        long[] result= db.employeeDAO().insert(employee);
-
-                        if (result != null) {
-                            Toast.makeText(getContext(), "Chúc mừng bạn vừa tuyển nhân viên mới", Toast.LENGTH_SHORT).show();
-                            nhanVienAdapter.notifyDataSetChanged();
-                            alertDialog.dismiss();
+                        if (tietID.getText().toString().isEmpty()||tietName.getText().toString().isEmpty()||tietSoDienThoai.getText().toString().isEmpty()||tiedSoCMND.getText().toString().isEmpty()||tietDiaChi.getText().toString().isEmpty()){
+                            Toast.makeText(getContext(), "Không được bỏ trống", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(getContext(), "Không thể tuyển người này", Toast.LENGTH_SHORT).show();
+                            Employee employee=new Employee();
+                            employee.hoVaTen=tietName.getText().toString();
+                            employee.id=tietID.getText().toString();
+                            employee.soDienThoai= tietSoDienThoai.getText().toString();
+                            employee.diaChi=tietDiaChi.getText().toString();
+                            employee.soCMND= Integer.parseInt(tiedSoCMND.getText().toString());
+                            long[] result= db.employeeDAO().insert(employee);
+                            if (result != null) {
+                                Toast.makeText(getContext(), "Chúc mừng bạn vừa tuyển nhân viên mới", Toast.LENGTH_SHORT).show();
+                                alertDialog.dismiss();
+                                onResume();
+                            } else {
+                                Toast.makeText(getContext(), "Không thể tuyển người này", Toast.LENGTH_SHORT).show();
+                            }
                         }
+
+
+
                     }
                 });
                 alertDialog.show();
