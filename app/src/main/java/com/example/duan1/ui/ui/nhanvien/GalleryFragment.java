@@ -1,7 +1,6 @@
 package com.example.duan1.ui.ui.nhanvien;
 
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +39,7 @@ FloatingActionButton fabAddNhanVien;
         fabAddNhanVien=root.findViewById(R.id.fabAddNhanVien);
         final AppDatabase db= Room.databaseBuilder(getContext(),AppDatabase.class,"duan1.db").allowMainThreadQueries().build();
 
-        employeeList=db.employeeDAO().getAll();
+        employeeList=db.employeeDAO().getAllNhanVien();
         nhanVienAdapter=new NhanVienAdapter(employeeList,getContext());
         lvListNhanVien.setAdapter(nhanVienAdapter);
         fabAddNhanVien.setOnClickListener(new View.OnClickListener() {
@@ -69,11 +68,10 @@ FloatingActionButton fabAddNhanVien;
                             employee.soDienThoai= tietSoDienThoai.getText().toString();
                             employee.diaChi=tietDiaChi.getText().toString();
                             employee.soCMND= Integer.parseInt(tiedSoCMND.getText().toString());
-                            long[] result= db.employeeDAO().insert(employee);
+                            long[] result= db.employeeDAO().insertNhanVien(employee);
                             if (result != null) {
                                 Toast.makeText(getContext(), "Chúc mừng bạn vừa tuyển nhân viên mới", Toast.LENGTH_SHORT).show();
                                 alertDialog.dismiss();
-                                onResume();
                             } else {
                                 Toast.makeText(getContext(), "Không thể tuyển người này", Toast.LENGTH_SHORT).show();
                             }

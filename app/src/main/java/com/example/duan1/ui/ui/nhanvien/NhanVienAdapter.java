@@ -75,7 +75,7 @@ public class NhanVienAdapter extends BaseAdapter {
                     public void onClick(DialogInterface dialog, int which) {
                         Toast.makeText(context, "Bạn đã đuổi việc "+employeeList.get(position).hoVaTen, Toast.LENGTH_SHORT).show();
                         employeeList.remove(employee);
-                        appDatabase.employeeDAO().delete(employee);
+                        appDatabase.employeeDAO().deleteNhanVien(employee);
                         notifyDataSetChanged();
                     }
                 }).setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
@@ -114,7 +114,7 @@ public class NhanVienAdapter extends BaseAdapter {
                         employee.hoVaTen=tietName.getText().toString();
                         employee.soDienThoai=tietSoDienThoai.getText().toString();
                         employee.diaChi=tietDiaChi.getText().toString();
-                        appDatabase.employeeDAO().update(employee);
+                        appDatabase.employeeDAO().updateNhanVien(employee);
                         Toast.makeText(context, "Bạn đã sửa thông tin nhân viên thành công", Toast.LENGTH_SHORT).show();
                         alertDialog.dismiss();
                         notifyDataSetChanged();
