@@ -96,5 +96,6 @@ FloatingActionButton fabAddNhanVien;
     @Override
     public void onResume() {
         super.onResume();
+        nhanVienAdapter.notifyDataSetChanged();
     }
 }
