@@ -137,5 +137,8 @@ public class NhanVienAdapter extends BaseAdapter {
         super.notifyDataSetChanged();
     }
 
-
+    public void onDataSetChange(List<Employee> employees){
+        this.employeeList=employees;
+        notifyDataSetChanged();
+    }
 }

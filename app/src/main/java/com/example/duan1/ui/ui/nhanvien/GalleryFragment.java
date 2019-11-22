@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.room.Room;
@@ -27,6 +28,8 @@ ListView lvListNhanVien;
 NhanVienAdapter nhanVienAdapter;
 List<Employee> employeeList;
 FloatingActionButton fabAddNhanVien;
+AppDatabase db;
+    GalleryFragment galleryFragment;
     private GalleryViewModel galleryViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -37,7 +40,7 @@ FloatingActionButton fabAddNhanVien;
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
         lvListNhanVien=root.findViewById(R.id.lvListNhanVien);
         fabAddNhanVien=root.findViewById(R.id.fabAddNhanVien);
-        final AppDatabase db= Room.databaseBuilder(getContext(),AppDatabase.class,"duan1.db").allowMainThreadQueries().build();
+       db = Room.databaseBuilder(getContext(),AppDatabase.class,"duan1.db").allowMainThreadQueries().build();
 
         employeeList=db.employeeDAO().getAllNhanVien();
         nhanVienAdapter=new NhanVienAdapter(employeeList,getContext());
@@ -56,6 +59,7 @@ FloatingActionButton fabAddNhanVien;
                 tietName=alert.findViewById(R.id.tietName);
                 tietSoDienThoai=alert.findViewById(R.id.tietsoDienThoai);
                 btnTuyenNhanVien=alert.findViewById(R.id.btnTuyenNhanVien);
+                alertDialog.setCancelable(false);
                 btnTuyenNhanVien.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -69,9 +73,11 @@ FloatingActionButton fabAddNhanVien;
                             employee.diaChi=tietDiaChi.getText().toString();
                             employee.soCMND= Integer.parseInt(tiedSoCMND.getText().toString());
                             long[] result= db.employeeDAO().insertNhanVien(employee);
+                            nhanVienAdapter.notifyDataSetChanged();
                             if (result != null) {
                                 Toast.makeText(getContext(), "Chúc mừng bạn vừa tuyển nhân viên mới", Toast.LENGTH_SHORT).show();
                                 alertDialog.dismiss();
+
                             } else {
                                 Toast.makeText(getContext(), "Không thể tuyển người này", Toast.LENGTH_SHORT).show();
                             }
@@ -91,9 +97,38 @@ FloatingActionButton fabAddNhanVien;
         return root;
     }
 
+
+
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        nhanVienAdapter.notifyDataSetChanged();
+        employeeList.clear();
+        db = Room.databaseBuilder(getContext(),AppDatabase.class,"duan1.db").allowMainThreadQueries().build();
+        employeeList=db.employeeDAO().getAllNhanVien();
+        nhanVienAdapter.onDataSetChange(employeeList);
+        Toast.makeText(getActivity().getApplicationContext(), "hello", Toast.LENGTH_SHORT).show();    }
+
     @Override
     public void onResume() {
         super.onResume();
-        nhanVienAdapter.notifyDataSetChanged();
+        Toast.makeText(getContext(), "Resume", Toast.LENGTH_SHORT).show();
+
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Toast.makeText(getContext(), "Start", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Toast.makeText(getContext(), "Stop", Toast.LENGTH_SHORT).show();
+    }
+
+
 }
