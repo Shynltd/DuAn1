@@ -1,6 +1,8 @@
 package com.example.duan1.ui.ui.nhanvien;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,46 +50,7 @@ AppDatabase db;
         fabAddNhanVien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
-                final View alert = LayoutInflater.from(getContext()).inflate(R.layout.add_nhanvien,null);
-                alertDialog.setView(alert);
-                final TextInputEditText tietID,tietName,tietDiaChi,tietSoDienThoai,tiedSoCMND;
-                Button btnTuyenNhanVien;
-                tietID=alert.findViewById(R.id.tietID);
-                tiedSoCMND=alert.findViewById(R.id.tietSoCMND);
-                tietDiaChi=alert.findViewById(R.id.tietDiaChi);
-                tietName=alert.findViewById(R.id.tietName);
-                tietSoDienThoai=alert.findViewById(R.id.tietsoDienThoai);
-                btnTuyenNhanVien=alert.findViewById(R.id.btnTuyenNhanVien);
-                alertDialog.setCancelable(false);
-                btnTuyenNhanVien.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (tietID.getText().toString().isEmpty()||tietName.getText().toString().isEmpty()||tietSoDienThoai.getText().toString().isEmpty()||tiedSoCMND.getText().toString().isEmpty()||tietDiaChi.getText().toString().isEmpty()){
-                            Toast.makeText(getContext(), "Không được bỏ trống", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Employee employee=new Employee();
-                            employee.hoVaTen=tietName.getText().toString();
-                            employee.id=tietID.getText().toString();
-                            employee.soDienThoai= tietSoDienThoai.getText().toString();
-                            employee.diaChi=tietDiaChi.getText().toString();
-                            employee.soCMND= Integer.parseInt(tiedSoCMND.getText().toString());
-                            long[] result= db.employeeDAO().insertNhanVien(employee);
-                            nhanVienAdapter.notifyDataSetChanged();
-                            if (result != null) {
-                                Toast.makeText(getContext(), "Chúc mừng bạn vừa tuyển nhân viên mới", Toast.LENGTH_SHORT).show();
-                                alertDialog.dismiss();
-
-                            } else {
-                                Toast.makeText(getContext(), "Không thể tuyển người này", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-
-
-                    }
-                });
-                alertDialog.show();
+                startActivity(new Intent(getContext(),TuyenNhanVienActivity.class));
             }
 
         });
@@ -100,21 +63,31 @@ AppDatabase db;
 
 
 
+//public void onclickTNV(){
+//
+//
+//
+//
+//        }
+//    });
+//
+//    alertDialog.show();
+//
+//}
 
     @Override
     public void onPause() {
         super.onPause();
+            }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         nhanVienAdapter.notifyDataSetChanged();
         employeeList.clear();
         db = Room.databaseBuilder(getContext(),AppDatabase.class,"duan1.db").allowMainThreadQueries().build();
         employeeList=db.employeeDAO().getAllNhanVien();
         nhanVienAdapter.onDataSetChange(employeeList);
-        Toast.makeText(getActivity().getApplicationContext(), "hello", Toast.LENGTH_SHORT).show();    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Toast.makeText(getContext(), "Resume", Toast.LENGTH_SHORT).show();
 
     }
 

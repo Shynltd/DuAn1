@@ -15,6 +15,8 @@ public class Employee {
     public String soDienThoai;
     @ColumnInfo(name = "soCMND")
     public int soCMND;
+    @ColumnInfo(name ="luong" )
+    public int luong;
     @ColumnInfo(name = "diaChi")
     public String diaChi;
 

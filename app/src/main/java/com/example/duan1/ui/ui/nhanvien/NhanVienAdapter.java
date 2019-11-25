@@ -93,10 +93,11 @@ public class NhanVienAdapter extends BaseAdapter {
                 final AlertDialog alertDialog=new AlertDialog.Builder(context).create();
                 final View alert =LayoutInflater.from(context).inflate(R.layout.update_nhanvien,null);
                 alertDialog.setView(alert);
-                final TextInputEditText tietID,tietName,tietDiaChi,tietSoDienThoai,tiedSoCMND;
+                final TextInputEditText tietID,tietName,tietDiaChi,tietSoDienThoai,tiedSoCMND,tietLuong;
                 Button btnSuaNhanVien;
                 tietID=alert.findViewById(R.id.tietID);
                 tiedSoCMND=alert.findViewById(R.id.tietSoCMND);
+                tietLuong=alert.findViewById(R.id.tietLuong);
                 tietDiaChi=alert.findViewById(R.id.tietDiaChi);
                 tietName=alert.findViewById(R.id.tietName);
                 tietSoDienThoai=alert.findViewById(R.id.tietsoDienThoai);
@@ -104,6 +105,7 @@ public class NhanVienAdapter extends BaseAdapter {
                 tietID.setText(employeeList.get(position).id);
                 tietID.setEnabled(false);
                 tiedSoCMND.setText(employeeList.get(position).soCMND+"");
+                tietLuong.setText(employeeList.get(position).luong+"");
                 tiedSoCMND.setEnabled(false);
                 tietDiaChi.setText(employeeList.get(position).diaChi);
                 tietName.setText(employeeList.get(position).hoVaTen);
