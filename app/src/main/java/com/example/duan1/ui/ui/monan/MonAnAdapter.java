@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.duan1.R;
 import com.example.duan1.database.AppDatabase;
+import com.example.duan1.model.Employee;
 import com.example.duan1.model.MonAn;
 
 import java.util.List;
@@ -69,5 +70,15 @@ Context context;
             imgDeleteMonAn=itemView.findViewById(R.id.imgDeleteMonAn);
 
         }
+
     }
+ public void notifyDataSetChange(){
+        super.notifyDataSetChanged();
+ }
+    public void onDataSetChange(List<MonAn> monAnList){
+        this.monAnList=monAnList;
+        notifyDataSetChange();
+    }
+
 }
+

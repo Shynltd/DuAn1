@@ -61,20 +61,6 @@ AppDatabase db;
     }
 
 
-
-
-//public void onclickTNV(){
-//
-//
-//
-//
-//        }
-//    });
-//
-//    alertDialog.show();
-//
-//}
-
     @Override
     public void onPause() {
         super.onPause();

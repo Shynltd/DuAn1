@@ -1,6 +1,7 @@
 package com.example.duan1.ui.ui.monan;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,38 +51,23 @@ public class SlideshowFragment extends Fragment {
         fabAddMonAn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AlertDialog alertDialog=new AlertDialog.Builder(getContext()).create();
-                View alert =LayoutInflater.from(getContext()).inflate(R.layout.add_monan,null);
-                alertDialog.setView(alert);
-                final EditText edIDMonAn,edTenMonAn,edGiaMonAn;
-                Button btnThemMonAn;
-                edIDMonAn=alert.findViewById(R.id.edIDMonAn);
-                edTenMonAn=alert.findViewById(R.id.edTenMonAn);
-                edGiaMonAn=alert.findViewById(R.id.edGiaMonAn);
-                btnThemMonAn=alert.findViewById(R.id.btnThemMonAn);
-                btnThemMonAn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        MonAn monAn=new MonAn();
-                        monAn.IDMonAn=edIDMonAn.getText().toString();
-                        monAn.tenMonAn=edTenMonAn.getText().toString();
-                        monAn.giaMonAn=Integer.parseInt(edGiaMonAn.getText().toString());
-                        long[] result = appDatabase.monAnDAO().insertMonAn(monAn);
-                        if (result != null) {
-                            Toast.makeText(getContext(), "Bạn thêm món ăn mới thành công", Toast.LENGTH_SHORT).show();
-                            monAnAdapter.notifyDataSetChanged();
-                            alertDialog.dismiss();
-                        } else {
-                            Toast.makeText(getContext(), "Món ăn không hợp lệ", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-                alertDialog.show();
+                startActivity(new Intent(getContext(),ThemMonAnActivity.class));
             }
         });
         GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),3,RecyclerView.VERTICAL,false);
         rvListMonAn.setLayoutManager(gridLayoutManager);
         rvListMonAn.setAdapter(monAnAdapter);
         return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Toast.makeText(getContext(), "Resume", Toast.LENGTH_SHORT).show();
+        monAnAdapter.notifyDataSetChanged();
+        monAnList.clear();
+        appDatabase = Room.databaseBuilder(getContext(),AppDatabase.class,"duan1.db").allowMainThreadQueries().build();
+        monAnList=appDatabase.monAnDAO().getAllMonAn();
+        monAnAdapter.onDataSetChange(monAnList);
     }
 }
