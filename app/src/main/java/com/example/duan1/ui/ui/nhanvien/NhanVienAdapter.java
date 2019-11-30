@@ -116,6 +116,7 @@ public class NhanVienAdapter extends BaseAdapter {
                         employee.hoVaTen=tietName.getText().toString();
                         employee.soDienThoai=tietSoDienThoai.getText().toString();
                         employee.diaChi=tietDiaChi.getText().toString();
+                        employee.luong=Integer.parseInt(tietLuong.getText().toString()+"");
                         appDatabase.employeeDAO().updateNhanVien(employee);
                         Toast.makeText(context, "Bạn đã sửa thông tin nhân viên thành công", Toast.LENGTH_SHORT).show();
                         alertDialog.dismiss();

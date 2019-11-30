@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.duan1.R;
 
 public class ToolsFragment extends Fragment {
-
+TextView tv;
     private ToolsViewModel toolsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -23,13 +23,8 @@ public class ToolsFragment extends Fragment {
         toolsViewModel =
                 ViewModelProviders.of(this).get(ToolsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_tools, container, false);
-        final TextView textView = root.findViewById(R.id.text_tools);
-        toolsViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        tv=root.findViewById(R.id.text_tools);
+        tv.setText("Hello");
         return root;
     }
 }

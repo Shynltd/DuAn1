@@ -30,8 +30,8 @@ ListView lvListNhanVien;
 NhanVienAdapter nhanVienAdapter;
 List<Employee> employeeList;
 FloatingActionButton fabAddNhanVien;
-AppDatabase db;
-    GalleryFragment galleryFragment;
+AppDatabase appDatabase;
+GalleryFragment galleryFragment;
     private GalleryViewModel galleryViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -42,9 +42,8 @@ AppDatabase db;
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
         lvListNhanVien=root.findViewById(R.id.lvListNhanVien);
         fabAddNhanVien=root.findViewById(R.id.fabAddNhanVien);
-       db = Room.databaseBuilder(getContext(),AppDatabase.class,"duan1.db").allowMainThreadQueries().build();
-
-        employeeList=db.employeeDAO().getAllNhanVien();
+        appDatabase = Room.databaseBuilder(getContext(),AppDatabase.class,"duan1.db").allowMainThreadQueries().build();
+        employeeList=appDatabase.employeeDAO().getAllNhanVien();
         nhanVienAdapter=new NhanVienAdapter(employeeList,getContext());
         lvListNhanVien.setAdapter(nhanVienAdapter);
         fabAddNhanVien.setOnClickListener(new View.OnClickListener() {
@@ -54,40 +53,19 @@ AppDatabase db;
             }
 
         });
-
-
-
         return root;
     }
-
-
-    @Override
-    public void onPause() {
-        super.onPause();
-            }
 
     @Override
     public void onResume() {
         super.onResume();
         nhanVienAdapter.notifyDataSetChanged();
         employeeList.clear();
-        db = Room.databaseBuilder(getContext(),AppDatabase.class,"duan1.db").allowMainThreadQueries().build();
-        employeeList=db.employeeDAO().getAllNhanVien();
+        appDatabase = Room.databaseBuilder(getContext(),AppDatabase.class,"duan1.db").allowMainThreadQueries().build();
+        employeeList=appDatabase.employeeDAO().getAllNhanVien();
         nhanVienAdapter.onDataSetChange(employeeList);
-
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        Toast.makeText(getContext(), "Start", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Toast.makeText(getContext(), "Stop", Toast.LENGTH_SHORT).show();
-    }
 
 
 }
