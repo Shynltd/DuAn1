@@ -1,26 +1,22 @@
 package com.example.duan1.ui.ui.monan;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import com.example.duan1.R;
+import com.example.duan1.dao.MyOnItemClickListener;
 import com.example.duan1.database.AppDatabase;
 import com.example.duan1.model.MonAn;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -47,11 +43,18 @@ public class SlideshowFragment extends Fragment {
         monAnList=appDatabase.monAnDAO().getAllMonAn();
 
         monAnAdapter=new MonAnAdapter(monAnList,getContext());
+
         rvListMonAn.setHasFixedSize(true);
         fabAddMonAn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(),ThemMonAnActivity.class));
+            }
+        });
+        monAnAdapter.setMyOnItemClickListener(new MyOnItemClickListener() {
+            @Override
+            public void onClick(MonAn monAn) {
+
             }
         });
         GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),3,RecyclerView.VERTICAL,false);
@@ -63,11 +66,16 @@ public class SlideshowFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Toast.makeText(getContext(), "Resume", Toast.LENGTH_SHORT).show();
         monAnAdapter.notifyDataSetChanged();
         monAnList.clear();
         appDatabase = Room.databaseBuilder(getContext(),AppDatabase.class,"duan1.db").allowMainThreadQueries().build();
         monAnList=appDatabase.monAnDAO().getAllMonAn();
         monAnAdapter.onDataSetChange(monAnList);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getActivity().getMenuInflater().inflate(R.menu.monan_context_menu,menu);
     }
 }

@@ -57,6 +57,7 @@ public class TuyenNhanVienActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Chúc mừng bạn vừa tuyển nhân viên mới", Toast.LENGTH_SHORT).show();
                         finish();
 
+
                     } else {
                         Toast.makeText(getApplicationContext(), "Không thể tuyển người này", Toast.LENGTH_SHORT).show();
                     }

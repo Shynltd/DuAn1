@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="80dp"
+    android:background="@drawable/background_employee"
+    android:orientation="vertical"
+    android:layout_margin="10dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+android:layout_margin="10dp"
+        android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/img_hoa_don"
+        android:id="@+id/imgHoaDon"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_toRightOf="@id/imgHoaDon"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ma Hoa Don"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:id="@+id/tvMaHoaDon"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ngay mua"
+            android:id="@+id/tvNgayMua"/>
+    </LinearLayout>
+</RelativeLayout>
+
+</LinearLayout>

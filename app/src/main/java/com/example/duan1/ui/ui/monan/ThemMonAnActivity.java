@@ -3,9 +3,7 @@ package com.example.duan1.ui.ui.monan;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +27,7 @@ public class ThemMonAnActivity extends AppCompatActivity {
     NhanVienAdapter nhanVienAdapter;
     List<Employee>employeeList;
     Spinner spnNV;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

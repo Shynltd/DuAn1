@@ -144,4 +144,5 @@ public class NhanVienAdapter extends BaseAdapter {
         this.employeeList=employees;
         notifyDataSetChanged();
     }
+
 }
