@@ -5,10 +5,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.Date;
 @Entity
 public class HoaDon {
-    @PrimaryKey @NonNull
+    @PrimaryKey
+    @NonNull
     public String maHoaDon;
     @ColumnInfo(name = "ngayMua")
     public String ngayMua;
@@ -18,5 +18,9 @@ public class HoaDon {
     public String nguoiMua;
     @ColumnInfo(name = "monHang")
     public String monHang;
+    @ColumnInfo(name = "soLuong")
+    public int soLuong;
+    @ColumnInfo(name = "tongTien")
+    public double tongTien;
 
 }

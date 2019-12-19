@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.duan1.R;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -57,13 +56,10 @@ TextInputLayout tietPass;
                     } else {
                         Toast.makeText(LoginActivity.this, "Sai tài khoản mật khẩu", Toast.LENGTH_SHORT).show();
                     }
-
                 }
-
             }
         });
     }
-
     private void init() {
         tietPass=findViewById(R.id.tietPassword);
         btnSignIn=findViewById(R.id.btnSignIn);

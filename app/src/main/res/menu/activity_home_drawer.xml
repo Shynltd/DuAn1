@@ -19,13 +19,4 @@
             android:id="@+id/nav_hoadon"
             android:icon="@drawable/hoadon"
             android:title="@string/menu_tools" />
-            <item
-                android:id="@+id/nav_thongke"
-                android:icon="@drawable/thongke"
-                android:title="@string/menu_share" />
-            <item
-                android:id="@+id/nav_topbanchay"
-                android:icon="@drawable/topbanchay"
-                android:title="@string/menu_send" />
-
 </menu>

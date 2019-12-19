@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="40dp"
+    android:id="@+id/rlMonAn"
+    android:gravity="center">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tên món ăn"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/tvSpnTen"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Giá:"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:id="@+id/tvSpnGia"/>
+</RelativeLayout>

@@ -10,10 +10,76 @@
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Ma Hoa Don"/>
+    android:textSize="20dp"
+    android:text="Mã hóa đơn"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/edMaHoaDon"/>
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:textSize="20dp"
+    android:text="Ngày mua"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:id="@+id/tvNgayMua"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:text="Nhân viên bán hàng"/>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/spnNvBanHang"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:text="Món ăn"/>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/spnMonAn"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="Số lượng"/>
+   <LinearLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_gravity="center"
+       android:orientation="horizontal">
+       <Button
+           android:layout_width="50dp"
+           android:layout_height="50dp"
+           android:id="@+id/btnGiam"
+           android:text="-"/>
+           <TextView
+               android:layout_width="80dp"
+               android:layout_height="50dp"
+               android:text="1"
+               android:gravity="center"
+               android:id="@+id/tvSoLuong"/>
+       <Button
+           android:layout_width="50dp"
+           android:layout_height="50dp"
+           android:text="+"
+           android:id="@+id/btnTang"/>
 
+   </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:id="@+id/btnThemHoaDon"
+        android:text="Thêm hóa đơn"/>
 </LinearLayout>

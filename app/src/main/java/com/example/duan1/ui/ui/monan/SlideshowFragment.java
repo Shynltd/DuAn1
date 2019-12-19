@@ -18,6 +18,7 @@ import androidx.room.Room;
 import com.example.duan1.R;
 import com.example.duan1.dao.MyOnItemClickListener;
 import com.example.duan1.database.AppDatabase;
+import com.example.duan1.model.Employee;
 import com.example.duan1.model.MonAn;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -51,12 +52,7 @@ public class SlideshowFragment extends Fragment {
                 startActivity(new Intent(getContext(),ThemMonAnActivity.class));
             }
         });
-        monAnAdapter.setMyOnItemClickListener(new MyOnItemClickListener() {
-            @Override
-            public void onClick(MonAn monAn) {
 
-            }
-        });
         GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),3,RecyclerView.VERTICAL,false);
         rvListMonAn.setLayoutManager(gridLayoutManager);
         rvListMonAn.setAdapter(monAnAdapter);
@@ -73,9 +69,4 @@ public class SlideshowFragment extends Fragment {
         monAnAdapter.onDataSetChange(monAnList);
     }
 
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        getActivity().getMenuInflater().inflate(R.menu.monan_context_menu,menu);
-    }
 }

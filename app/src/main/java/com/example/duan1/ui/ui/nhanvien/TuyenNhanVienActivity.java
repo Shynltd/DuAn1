@@ -29,6 +29,7 @@ public class TuyenNhanVienActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tuyen_nhan_vien);
+        setTitle("Thêm nhân viên");
         nhanVienAdapter=new NhanVienAdapter(employeeList,TuyenNhanVienActivity.this);
         appDatabase= Room.databaseBuilder(TuyenNhanVienActivity.this,AppDatabase.class,"duan1.db").allowMainThreadQueries().build();
         tietID=findViewById(R.id.tietID);
@@ -41,7 +42,8 @@ public class TuyenNhanVienActivity extends AppCompatActivity {
         btnTuyenNhanVien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tietID.getText().toString().isEmpty() || tietName.getText().toString().isEmpty() || tietSoDienThoai.getText().toString().isEmpty() || tiedSoCMND.getText().toString().isEmpty() || tietDiaChi.getText().toString().isEmpty()) {
+                if (tietID.getText().toString().isEmpty() || tietName.getText().toString().isEmpty() || tietSoDienThoai.getText().toString().isEmpty() || tiedSoCMND.getText().toString().isEmpty() ||
+                        tietDiaChi.getText().toString().isEmpty()) {
                     Toast.makeText(TuyenNhanVienActivity.this, "Không được bỏ trống", Toast.LENGTH_SHORT).show();
                 } else {
                     Employee employee = new Employee();
@@ -56,8 +58,6 @@ public class TuyenNhanVienActivity extends AppCompatActivity {
                     if (result != null) {
                         Toast.makeText(getApplicationContext(), "Chúc mừng bạn vừa tuyển nhân viên mới", Toast.LENGTH_SHORT).show();
                         finish();
-
-
                     } else {
                         Toast.makeText(getApplicationContext(), "Không thể tuyển người này", Toast.LENGTH_SHORT).show();
                     }

@@ -10,9 +10,11 @@ import com.example.duan1.model.Employee;
 import com.example.duan1.model.HoaDon;
 import com.example.duan1.model.MonAn;
 
-@Database(entities = {Employee.class, MonAn.class, HoaDon.class},version = 1)
+@Database(entities = {Employee.class, MonAn.class, HoaDon.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract EmployeeDAO employeeDAO();
+
     public abstract MonAnDAO monAnDAO();
+
     public abstract HoaDonDAO hoaDonDAO();
 }

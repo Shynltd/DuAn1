@@ -26,38 +26,39 @@ public class ThemMonAnActivity extends AppCompatActivity {
     List<MonAn> monAnList;
     NhanVienAdapter nhanVienAdapter;
     List<Employee>employeeList;
-    Spinner spnNV;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_them_mon_an);
+        setTitle("Thêm món ăn");
         edIDMonAn=findViewById(R.id.edIDMonAn);
-        spnNV=findViewById(R.id.spnNV);
-
         monAnAdapter=new MonAnAdapter(monAnList,ThemMonAnActivity.this);
         edTenMonAn=findViewById(R.id.edTenMonAn);
-
         edGiaMonAn=findViewById(R.id.edGiaMonAn);
         btnThemMonAn=findViewById(R.id.btnThemMonAn);
         appDatabase= Room.databaseBuilder(ThemMonAnActivity.this,AppDatabase.class,"duan1.db").allowMainThreadQueries().build();
         employeeList = appDatabase.employeeDAO().getAllNhanVien();
         nhanVienAdapter=new NhanVienAdapter(employeeList,this);
-        spnNV.setAdapter(nhanVienAdapter);
+
         btnThemMonAn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MonAn monAn=new MonAn();
-                monAn.IDMonAn=edIDMonAn.getText().toString();
-                monAn.tenMonAn=edTenMonAn.getText().toString();
-                monAn.giaMonAn=Integer.parseInt(edGiaMonAn.getText().toString());
-                long[] result = appDatabase.monAnDAO().insertMonAn(monAn);
-                if (result != null) {
-                    Toast.makeText(getApplicationContext(), "Bạn thêm món ăn mới thành công", Toast.LENGTH_SHORT).show();
-                    finish();
+                if (edIDMonAn.getText().toString().isEmpty()||edTenMonAn.getText().toString().isEmpty()||edGiaMonAn.getText().toString().isEmpty()){
+                    Toast.makeText(ThemMonAnActivity.this, "Không được để trống", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Món ăn không hợp lệ", Toast.LENGTH_SHORT).show();
+                    MonAn monAn = new MonAn();
+                    monAn.IDMonAn = edIDMonAn.getText().toString();
+                    monAn.tenMonAn = edTenMonAn.getText().toString();
+                    monAn.giaMonAn = Integer.parseInt(edGiaMonAn.getText().toString());
+                    long[] result = appDatabase.monAnDAO().insertMonAn(monAn);
+                    if (result != null) {
+                        Toast.makeText(getApplicationContext(), "Bạn thêm món ăn mới thành công", Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Món ăn không hợp lệ", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

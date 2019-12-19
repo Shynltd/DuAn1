@@ -7,9 +7,10 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class MonAn {
-    @PrimaryKey @NonNull
+    @PrimaryKey
+    @NonNull
     public String IDMonAn;
-    @ColumnInfo (name = "tenMonAn")
+    @ColumnInfo(name = "tenMonAn")
     public String tenMonAn;
     @ColumnInfo(name = "giaMonAn")
     public int giaMonAn;

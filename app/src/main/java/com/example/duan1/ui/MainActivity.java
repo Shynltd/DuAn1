@@ -2,12 +2,9 @@ package com.example.duan1.ui;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.WindowDecorActionBar;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-
 import com.example.duan1.R;
 
 public class MainActivity extends AppCompatActivity {

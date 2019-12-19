@@ -26,7 +26,8 @@ import java.util.List;
 
 public class MonAnAdapter extends RecyclerView.Adapter<MonAnAdapter.MonAnHolder> {
 List<MonAn> monAnList;
-Context context;
+
+    public static Context context;
     private AppDatabase appDatabase;
     private MyOnItemClickListener myOnItemClickListener;
 
@@ -49,13 +50,6 @@ Context context;
     @Override
     public void onBindViewHolder(@NonNull MonAnHolder holder, final int position) {
         final MonAn monAn=monAnList.get(position);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myOnItemClickListener.onClick(monAn);
-            }
-        });
-
         holder.tvTenMonAn.setText(monAn.tenMonAn);
         holder.tvGiaMonAn.setText("Giá: "+monAn.giaMonAn+"đ");
         appDatabase= Room.databaseBuilder(context,AppDatabase.class,"duan1.db").allowMainThreadQueries().build();
@@ -82,11 +76,15 @@ Context context;
                 btnUpdateMonAn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        monAn.giaMonAn = Integer.parseInt(edGiaMonAn.getText().toString() + "");
-                        appDatabase.monAnDAO().updateMonAn(monAn);
-                        Toast.makeText(context, "Bạn đã sửa thông tin món ăn thành công", Toast.LENGTH_SHORT).show();
-                        alertDialog.dismiss();
-                        notifyDataSetChanged();
+                        if (edGiaMonAn.getText().toString().isEmpty()) {
+                            Toast.makeText(context, "Bạn chưa nhập giá", Toast.LENGTH_SHORT).show();
+                        } else {
+                            monAn.giaMonAn = Integer.parseInt(edGiaMonAn.getText().toString() + "");
+                            appDatabase.monAnDAO().updateMonAn(monAn);
+                            Toast.makeText(context, "Bạn đã sửa thông tin món ăn thành công", Toast.LENGTH_SHORT).show();
+                            alertDialog.dismiss();
+                            notifyDataSetChanged();
+                        }
                     }
                 });
                 alertDialog.show();
@@ -135,6 +133,7 @@ Context context;
             tvGiaMonAn=itemView.findViewById(R.id.tvGiaMonAn);
             imgMonAn=itemView.findViewById(R.id.imgMonAn);
             imgDeleteMonAn=itemView.findViewById(R.id.imgDeleteMonAn);
+
 
         }
 
